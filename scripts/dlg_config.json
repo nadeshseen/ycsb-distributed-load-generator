@@ -107,6 +107,7 @@
 		"trace_file_name": "../traces/testing.dat"
 	},
 	"output_file":"../results/final_report.txt",
+	
 	"new_trace_file_path":"../splitted_files/",
 	"new_trace_parameter_file_path":"../trace_workloads/",
 	"new_workload_file_path":"../workloads/"
