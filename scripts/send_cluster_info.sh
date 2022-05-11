@@ -1,0 +1,1 @@
+scp $3 $1@$2:KV-replay/cluster_info

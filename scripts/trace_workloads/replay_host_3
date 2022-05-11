@@ -1,0 +1,19 @@
+recordcount=4
+operationcount=4
+
+# Changed to call the new workload class: ReplayWorkload
+#workload=com.yahoo.ycsb.workloads.CoreWorkload
+workload=com.yahoo.ycsb.workloads.ReplayWorkload
+
+fieldcount=1
+fieldlength=1
+readallfields=true
+
+withtimestamp=true
+withsleep=true
+
+# Call the file with traces
+tracefile=workloads/kv_trace.dat
+
+# Flag for chache behaviour of the DB.
+ascache=true

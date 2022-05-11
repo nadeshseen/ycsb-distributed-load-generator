@@ -1,0 +1,41 @@
+{
+	"redis_machines" : [
+		{	
+			"target_system_username":"redis1",
+			"target_host" : "192.168.122.77",
+			"target_port": "7000",
+			"status":"master"
+		},
+		{	
+			"target_system_username":"redis1",
+			"target_host" : "192.168.122.77",
+			"target_port": "7001",
+			"status":"worker"
+		},
+		{	
+			"target_system_username":"redis2",
+			"target_host" : "192.168.122.57",
+			"target_port": "7002",
+			"status":"master"
+		},
+		{	
+			"target_system_username":"redis2",
+			"target_host" : "192.168.122.57",
+			"target_port": "7003",
+			"status":"worker"
+		},
+		{	
+			"target_system_username":"redis3",
+			"target_host" : "192.168.122.16",
+			"target_port": "7004",
+			"status":"master"
+		},
+		{	
+			"target_system_username":"redis3",
+			"target_host" : "192.168.122.16",
+			"target_port": "7005",
+			"status":"worker"
+		}
+	]
+	
+}
