@@ -1,3 +1,4 @@
+from ast import mod
 import requests
 import json
 from analyse_data import analyse
@@ -14,12 +15,34 @@ kv_redis_config_filename = "kv_redis_config.json"
 json_data_file =  open(config_filename)
 data = json.load(json_data_file)
 final_report_path = data["output_file"]
+mode_var = ""
 
+def main_program():
+	print("Choose mode :")
+	global mode_var
+	mode_var = "interactive"
+	print("1. Interactive Mode(Default)")
+	print("2. Auto Mode")
+	print("3. Debug Mode")
+	val = int(input())
+	
+	if val==2:
+		mode_var = "Auto"
+		print("Auto Mode selected")
+	elif val==3:
+		mode_var = "Debug"
+	else:
+		print("Interactive Mode selected")
+
+	
+	
 
 def call_split():
+	val = "Y"
 
-	print("Do you want to generate config files?(Y/N)")
-	val = input()
+	if mode_var == "interactive":
+		print("Do you want to generate config files?(Y/N)")
+		val = input()
 	if val=="Y" or val=="y":
 		print()
 		print("Splitting Trace Files")
@@ -55,9 +78,11 @@ def heartbeat():
 
 
 def call_send_files():
+	val = "Y"
 
-	print("Do you want to send the files?(Y/N)")
-	val = input()
+	if mode_var == "interactive":
+		print("Do you want to send the files?(Y/N)")
+		val = input()
 	if val=="Y" or val=="y":
 
 		for machines in data["machines"]:
@@ -65,8 +90,8 @@ def call_send_files():
 
 			if machines["status"]=="active":
 				parameters = machines["command_parameters"]
-				command = "./send_cluster_info.sh"+" "+str(parameters["worker_node_username"]+" "+str(parameters["worker_node_ip"]+" "+config_filename))
-				subprocess.run([command], shell=True)
+				# command = "./send_cluster_info.sh"+" "+str(parameters["worker_node_username"]+" "+str(parameters["worker_node_ip"]+" "+config_filename))
+				# subprocess.run([command], shell=True)
 				if machines["send_trace_file"]=="true":
 					command = "./send_trace_files.sh"+" "+str(machines["name"])+ " "+ str(parameters["worker_node_username"]+" "+str(parameters["worker_node_ip"]))
 					subprocess.run([command], shell=True)
@@ -91,8 +116,11 @@ def send_request(name, machines):
 	report.close()
 
 def call_send_run_request():
-	print("Do you want to run the benchmark?(Y/N)")
-	val = input()
+	val = "Y"
+
+	if mode_var == "interactive":
+		print("Do you want to run the benchmark?(Y/N)")
+		val = input()
 	if val=="Y" or val=="y":
 		request_threads = []
 		for machines in data["machines"]:
@@ -124,8 +152,11 @@ def load_request(name, machines):
 	report.close()
 
 def call_send_load_request():
-	print("Do you want to load the data?(Y/N)")
-	val = input()
+	val = "Y"
+
+	if mode_var == "interactive":
+		print("Do you want to load the data?(Y/N)")
+		val = input()
 	if val=="Y" or val=="y":
 		request_threads = []
 		for machines in data["machines"]:
@@ -144,14 +175,20 @@ def call_send_load_request():
 	
 
 def call_analysis():
-	print("Do you want a report of all the data?(Y/N)")
-	val = input()
+	val = "Y"
+
+	if mode_var == "interactive":
+		print("Do you want a report of all the data?(Y/N)")
+		val = input()
 	if val=="Y" or val=="y":
 		analyse(config_filename, final_report_path)
 
 def clear_redis():
-	print("Do you want to clear all data?(Y/N)")
-	val = input()
+	val = "Y"
+
+	if mode_var == "interactive":
+		print("Do you want to reset worker nodes redis instances?(Y/N)")
+		val = input()
 	if val=="Y" or val=="y":
 		print("Cleaing data from worker nodes redis instances")
 		json_data_file =  open(kv_redis_config_filename)
@@ -165,7 +202,11 @@ def clear_redis():
 				reply = requests.post(url = worker_url, json = redis_machines)
 				reply = reply.json()
 				print("Status : "+reply["status"])		
-
+				
+	if mode_var == "interactive":
+		print("Do you want to reset data from Target System?(Y/N)")
+		val = input()
+	if val=="Y" or val=="y":
 		print("Cleaning data from Target System")
 		json_data_file =  open(redis_config_filename)
 		redis_data = json.load(json_data_file)
@@ -195,19 +236,26 @@ def testing():
 	print("Status : "+reply["status"])
 	pass
 
+
+
+
 if __name__ == "__main__":
 	#start the heartbeat thread
 	#Start the workload genereator
 	#Check if heartbeat status is ok
 	# heartbeat()
-	clear_redis()
-	# testing()
-	
-	call_split()
-	call_send_files()
-	# call_send_load_request()
-	call_send_run_request()
-	call_analysis()
+	main_program()
+	if mode_var == "Debug":
+		testing()
+	else:
+		clear_redis()
+		# testing()
+		
+		call_split()
+		call_send_files()
+		# call_send_load_request()
+		call_send_run_request()
+		call_analysis()
 
 	# time.sleep(10)
 	sys.exit()

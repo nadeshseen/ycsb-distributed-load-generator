@@ -10,35 +10,35 @@ Output from Server ....
 Output from Server .... 
 
 {"status": "192.168.122.31_user6993674732269166438_192.168.122.111 0"}
-[OVERALL], RunTime(ms), 3057.0
+[OVERALL], RunTime(ms), 3325.0
 [OVERALL], Throughput(ops/sec), 0.0
 [READ], Operations, 1
-[READ], AverageLatency(us), 14993.0
-[READ], MinLatency(us), 14993
-[READ], MaxLatency(us), 14993
-[READ], 95thPercentileLatency(ms), 14
-[READ], 99thPercentileLatency(ms), 14
+[READ], AverageLatency(us), 9512.0
+[READ], MinLatency(us), 9512
+[READ], MaxLatency(us), 9512
+[READ], 95thPercentileLatency(ms), 9
+[READ], 99thPercentileLatency(ms), 9
 [READ], Return=0, 1
 [CLEANUP], Operations, 1
-[CLEANUP], AverageLatency(us), 4148.0
-[CLEANUP], MinLatency(us), 4148
-[CLEANUP], MaxLatency(us), 4148
+[CLEANUP], AverageLatency(us), 4962.0
+[CLEANUP], MinLatency(us), 4962
+[CLEANUP], MaxLatency(us), 4962
 [CLEANUP], 95thPercentileLatency(ms), 4
 [CLEANUP], 99thPercentileLatency(ms), 4
 [UPDATE], Operations, 1
-[UPDATE], AverageLatency(us), 6333.0
-[UPDATE], MinLatency(us), 6333
-[UPDATE], MaxLatency(us), 6333
-[UPDATE], 95thPercentileLatency(ms), 6
-[UPDATE], 99thPercentileLatency(ms), 6
+[UPDATE], AverageLatency(us), 7289.0
+[UPDATE], MinLatency(us), 7289
+[UPDATE], MaxLatency(us), 7289
+[UPDATE], 95thPercentileLatency(ms), 7
+[UPDATE], 99thPercentileLatency(ms), 7
 [UPDATE], Return=0, 1
 [INSERT], Operations, 1
-[INSERT], AverageLatency(us), 7103.0
-[INSERT], MinLatency(us), 7103
-[INSERT], MaxLatency(us), 7103
-[INSERT], 95thPercentileLatency(ms), 7
-[INSERT], 99thPercentileLatency(ms), 7
+[INSERT], AverageLatency(us), 5349.0
+[INSERT], MinLatency(us), 5349
+[INSERT], MaxLatency(us), 5349
+[INSERT], 95thPercentileLatency(ms), 5
+[INSERT], 99thPercentileLatency(ms), 5
 [INSERT], Return=0, 1
 '
-[CPU_USAGE], 0.365
-[RAM_USAGE], 7
+[CPU_USAGE], 0.364286
+[RAM_USAGE], 7.1
