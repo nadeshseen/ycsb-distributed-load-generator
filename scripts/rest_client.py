@@ -21,7 +21,7 @@ def main_program():
 	print("Choose mode :")
 	global mode_var
 	mode_var = "interactive"
-	print("1. Interactive Mode(Default)")
+	print("1. Interactive Mode")
 	print("2. Auto Mode")
 	print("3. Debug Mode")
 	val = int(input())
@@ -44,10 +44,7 @@ def call_split():
 		print("Do you want to generate config files?(Y/N)")
 		val = input()
 	if val=="Y" or val=="y":
-		print()
-		print("Splitting Trace Files")
 		split_files(config_filename)
-		print()
 
 def node_heartbeat(machines):
 	while(1):
@@ -55,10 +52,8 @@ def node_heartbeat(machines):
 			worker_url = "http://" + machines["worker_node_ip"] + ":5000/heartbeat/"
 			host_name = machines["worker_node_ip"]
 			requests.get(url = worker_url)
-			# print(host_name, "Working")
 		except requests.exceptions.RequestException as e:
 			print(host_name, "Not working")
-			# print("Worker Node not working. Stopping Testing")
 		time.sleep(2)
 
 def heartbeat():
@@ -68,7 +63,6 @@ def heartbeat():
 	heartbeat_threads = []
 	for machines in data["machines"]:
 		if machines["status"]=="active":
-			# print(machines)
 			heartbeat_threads.append(threading.Thread(target = node_heartbeat, args = [machines["command_parameters"]]))
 
 	for host_thread in heartbeat_threads:
@@ -92,17 +86,21 @@ def call_send_files():
 				parameters = machines["command_parameters"]
 				# command = "./send_cluster_info.sh"+" "+str(parameters["worker_node_username"]+" "+str(parameters["worker_node_ip"]+" "+config_filename))
 				# subprocess.run([command], shell=True)
+				
 				if machines["send_trace_file"]=="true":
-					command = "./send_trace_files.sh"+" "+str(machines["name"])+ " "+ str(parameters["worker_node_username"]+" "+str(parameters["worker_node_ip"]))
+					command = "./send_trace_files.sh"+" "+str(machines["name"])+ " "+ str(parameters["worker_node_username"])+" "+str(parameters["worker_node_ip"])+" "+str(machines["destination_workload_path"])
 					subprocess.run([command], shell=True)
 				else:
-					command = "./send_parameter_files.sh "+str(machines["name"])+ " "+ str(parameters["worker_node_username"]+" "+str(parameters["worker_node_ip"]))
+					command = "./send_parameter_files.sh "+str(machines["name"])+ " "+ str(parameters["worker_node_username"])+" "+str(parameters["worker_node_ip"])+" "+str(machines["destination_workload_path"])
 					subprocess.run([command], shell=True)
 
 def send_request(name, machines):
-	worker_url = "http://" + machines["worker_node_ip"] + ":5000/workload"
-	machines["phase"]="run"
-	reply = requests.post(url = worker_url, json = machines)
+	worker_url = "http://" + machines["command_parameters"]["worker_node_ip"] + ":"+machines["worker_rest_agent"]["port"]+"/workload"
+	machines["command_parameters"]["phase"]="run"
+
+
+	
+	reply = requests.post(url = worker_url, json = machines["command_parameters"])
 	reply = reply.json()
 		# Writing all reports to files
 	file_lines = reply["data"].split("\\n")
@@ -126,7 +124,7 @@ def call_send_run_request():
 		for machines in data["machines"]:
 			if machines["status"]=="active":
 				# print(machines)
-				request_threads.append(threading.Thread(target = send_request, args = [machines["name"], machines["command_parameters"]]))
+				request_threads.append(threading.Thread(target = send_request, args = [machines["name"], machines]))
 
 		for host_thread in request_threads:
 			host_thread.start()
@@ -138,9 +136,9 @@ def call_send_run_request():
 
 	
 def load_request(name, machines):
-	worker_url = "http://" + machines["worker_node_ip"] + ":5000/workload"
-	machines["phase"]="load"
-	reply = requests.post(url = worker_url, json = machines)
+	worker_url = "http://" + machines["command_parameters"]["worker_node_ip"] + ":"+machines["worker_rest_agent"]["port"]+"/workload"
+	machines["command_parameters"]["phase"]="load"
+	reply = requests.post(url = worker_url, json = machines["command_parameters"])
 	reply = reply.json()
 	# Writing all reports to files
 	file_lines = reply["data"].split("\\n")
@@ -194,12 +192,12 @@ def clear_redis():
 		json_data_file =  open(kv_redis_config_filename)
 		redis_data = json.load(json_data_file)
 		# print(redis_data)
-		for redis_machines in redis_data["redis_machines"]:
-			
-			if redis_machines["status"] == "master":
+		for worker_node in data["machines"]:
+			if worker_node["status"]=="active" and worker_node["target_system"]!="hpdos":
 				# print(redis_machines)
-				worker_url = "http://" + redis_machines["target_host"] + ":5000/clear_redis_nodes/"
-				reply = requests.post(url = worker_url, json = redis_machines)
+				worker_url = "http://" + worker_node["worker_rest_agent"]["ip"] + ":" + worker_node["worker_rest_agent"]["port"] + "/clear_redis_nodes/"
+				print(worker_url)
+				reply = requests.get(url = worker_url)
 				reply = reply.json()
 				print("Status : "+reply["status"])		
 				

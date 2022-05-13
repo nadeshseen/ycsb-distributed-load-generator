@@ -1,0 +1,12 @@
+recordcount=100
+operationcount=100
+workload=site.ycsb.workloads.CoreWorkload
+
+readallfields=true
+
+readproportion=1
+updateproportion=1
+insertproportion=1
+
+requestdistribution=zipfian
+

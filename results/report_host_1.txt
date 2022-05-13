@@ -4,29 +4,29 @@ START_SIGNAL
 192.168.122.111 START_SIGNAL
 Output from Server .... 
 
-{"status":"192.168.122.114_user6993674732269166438_192.168.122.111 0"}
-[OVERALL], RunTime(ms), 333.0
+{"status":"192.168.122.114_user6993674732269166438_192.168.122.111 1"}
+[OVERALL], RunTime(ms), 351.0
 [OVERALL], Throughput(ops/sec), 0.0
 [CLEANUP], Operations, 1
-[CLEANUP], AverageLatency(us), 4314.0
-[CLEANUP], MinLatency(us), 4314
-[CLEANUP], MaxLatency(us), 4314
+[CLEANUP], AverageLatency(us), 4897.0
+[CLEANUP], MinLatency(us), 4897
+[CLEANUP], MaxLatency(us), 4897
 [CLEANUP], 95thPercentileLatency(ms), 4
 [CLEANUP], 99thPercentileLatency(ms), 4
 [UPDATE], Operations, 1
-[UPDATE], AverageLatency(us), 6561.0
-[UPDATE], MinLatency(us), 6561
-[UPDATE], MaxLatency(us), 6561
+[UPDATE], AverageLatency(us), 6636.0
+[UPDATE], MinLatency(us), 6636
+[UPDATE], MaxLatency(us), 6636
 [UPDATE], 95thPercentileLatency(ms), 6
 [UPDATE], 99thPercentileLatency(ms), 6
 [UPDATE], Return=0, 1
 [INSERT], Operations, 2
-[INSERT], AverageLatency(us), 4484.5
-[INSERT], MinLatency(us), 4012
-[INSERT], MaxLatency(us), 4957
-[INSERT], 95thPercentileLatency(ms), 4
-[INSERT], 99thPercentileLatency(ms), 4
+[INSERT], AverageLatency(us), 8926.0
+[INSERT], MinLatency(us), 3296
+[INSERT], MaxLatency(us), 14556
+[INSERT], 95thPercentileLatency(ms), 14
+[INSERT], 99thPercentileLatency(ms), 14
 [INSERT], Return=0, 2
 '
-[CPU_USAGE], 0.442857
-[RAM_USAGE], 8.6
+[CPU_USAGE], 0.208333
+[RAM_USAGE], 7.1

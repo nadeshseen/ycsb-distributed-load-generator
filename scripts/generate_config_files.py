@@ -23,15 +23,20 @@ def split_files(config_filename):
                 n_splits+=1
                 active_file_name=machines["name"]
 
-    print("Number of splits :",str(n_splits))
+
     if n_splits==0:
+        parameter_count=0
         for machines in data["machines"]:
             if machines["status"]=="active":
                 if machines["send_trace_file"]=="false":
+                    parameter_count+=1
+                    
                     data = open("./workloads/parameter_template")
                     data = data.read()
+                    print()
                     # print(data)
                     data = data.replace("<recordcount>", machines["workload_parameter"]["recordcount"])
+                    data = data.replace("<core_path>", machines["workload_parameter"]["core_path"])
                     data = data.replace("<operationcount>", machines["workload_parameter"]["operationcount"])
                     data = data.replace("<readproportion>", machines["workload_parameter"]["readproportion"])
                     data = data.replace("<updateproportion>", machines["workload_parameter"]["updateproportion"])
@@ -45,13 +50,16 @@ def split_files(config_filename):
                     # print(new_file_name)
 
                     new_file = open(path+new_file_name, "w")
-                    new_file.write(data)        
+                    new_file.write(data)
+        print(parameter_count, "Parameter files")
     elif n_splits==1:
+        print("No splits")
         path = "./splitted_files/"
         new_file_name = "kv_trace_"+active_file_name+".dat"
         os.system("cp "+ file_name +" "+path+ new_file_name)
         print(machines["name"],new_file_name, file_len(path+new_file_name))
     else:
+        print("Number of splits :",str(n_splits))
         split_ratio = []
         for machines in data["machines"]:
             if machines["status"]=="active":
@@ -88,6 +96,7 @@ def split_files(config_filename):
 
         os.system(comm)
         i=0
+        parameter_count=0
         for machines in data["machines"]:
             if machines["status"]=="active":
                 if machines["send_trace_file"]=="true":
@@ -98,10 +107,12 @@ def split_files(config_filename):
                     print(machines["name"], file_len(path+new_file_name))
                     i+=1
                 else:
+                    parameter_count+=1
                     data = open("./workloads/parameter_template")
                     data = data.read()
                     # print(data)
                     data = data.replace("<recordcount>", machines["workload_parameter"]["recordcount"])
+                    data = data.replace("<core_path>", machines["workload_parameter"]["core_path"])
                     data = data.replace("<operationcount>", machines["workload_parameter"]["operationcount"])
                     data = data.replace("<readproportion>", machines["workload_parameter"]["readproportion"])
                     data = data.replace("<updateproportion>", machines["workload_parameter"]["updateproportion"])
@@ -116,6 +127,7 @@ def split_files(config_filename):
 
                     new_file = open(path+new_file_name, "w")
                     new_file.write(data)
+        print(parameter_count, "Parameter files")
     
 
 if __name__=="__main__":

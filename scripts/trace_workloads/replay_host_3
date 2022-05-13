@@ -1,5 +1,5 @@
-recordcount=4
-operationcount=4
+recordcount=6
+operationcount=6
 
 # Changed to call the new workload class: ReplayWorkload
 #workload=com.yahoo.ycsb.workloads.CoreWorkload

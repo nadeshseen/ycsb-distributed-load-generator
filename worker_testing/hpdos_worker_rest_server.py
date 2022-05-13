@@ -75,13 +75,14 @@ def get():
     return output_json
 
 
+
 @app.route('/clear_redis_nodes/', methods=['GET', 'POST'])
 def clear_redis_nodes():
     # print("This is the response", request.json)
 
     output = subprocess.check_output("redis-cli flushall", shell=True)
     output = output.decode("utf-8")
-    str_val = "Redis "+request.json["target_host"]+" "+request.json["target_port"]+" cleared : "+output[:-1]
+    str_val = "Redis "+str(get_ip())+" 6379 cleared : "+output[:-1]
     response = {"status": str_val}
     output_json = json.dumps(response)
     return output_json
@@ -90,7 +91,7 @@ def clear_redis_nodes():
 def run_workload():
     # print("This is the response", request.json)
     
-    command = "./bin/ycsb run hpdos -P workloads/workloada"
+    command = "./bin/ycsb run hpdos -P workloads/workload_template"
     # print(command)
     # subprocess.Popen("python3 cpu_usage.py", shell=True)
     redis_url = "http://" +request.json["target_host"]+ ":5000/resource_usage/"
