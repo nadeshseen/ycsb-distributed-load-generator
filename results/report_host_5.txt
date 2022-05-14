@@ -1,22 +1,22 @@
 b'/home/ub-05/nadesh/worker_node/cppclient/YCSB
-recordcount3
-operationcount3
+recordcount100
+operationcount30
 readproportion1
 workloadsite.ycsb.workloads.CoreWorkload
-insertproportion1
-updateproportion1
+insertproportion0
+updateproportion0
 dotransactionstrue
 readallfieldstrue
 dbHpdosClient
 requestdistributionzipfian
 init hpdos
 CMProcessor : Step 1 creating event channel
-CMProcessor : starting cm processing thread
-clients1
+clientsCMProcessor : starting cm processing thread
+1
 creating client for 192.168.200.201:19211 
-ep0x7ff71000a120
+ep0x7f253400a110
 vec size1
-ep0x7ff71000a120
+ep0x7f253400a110
 timeout 0
 1RdmaClientEndpointGroup :  eventRDMA_CM_EVENT_ADDR_RESOLVED
 RdmaClientEndpointGroup : Creating CQ processor
@@ -24,15 +24,38 @@ CqProcessr : starting process CQ events
 RdmaClientEndpointGroup :  eventRDMA_CM_EVENT_ROUTE_RESOLVED
 timeout 10
 1RdmaClientEndpointGroup :  eventRDMA_CM_EVENT_ESTABLISHED
-updateuser1820151046732198393
-connected
-put got key user1820151046732198393\xb4u val 1Mi;W?,Ls""0)Pi;"b*Fw*X++Hm7B)/84%/f<Pw+-6//b3?<!Re&Z\x7f(#l*#$&461%|%U=4U=!S/8*8+^}&?h1&.87"$J}&8"!Uo3 len 100Client 1
-Client 20 1
-nullpt
-nullptr
-Readuser6284781860667377211
-[OVERALL], RunTime(ms), 48
-[OVERALL], Throughput(ops/sec), 62.5
+Readuser8049444314573886243
+Readuser8753205170136912308
+Readuser1588605996173063704
+Readuser1468038131265307737
+Readuser8637665132542722587
+Readuser55488592825689361
+Readuser4409142221109489457
+Readuser2061286776547710327
+Readuser5223880262323894244
+Readuser3820921403140653113
+Readuser3353268450079572736
+Readuser1231930228763362049
+Readuser2176826814141900048
+Readuser8753205170136912308
+Readuser7340655631697293932
+Readuser8396529402727210653
+Readuser8637665132542722587
+Readuser532732225143146983
+Readuser3820921403140653113
+Readuser4520119406760868179
+Readuser3700353538232897146
+Readuser3232700585171816769
+Readuser171028630419879082
+Readuser6164213995759621244
+Readuser1000385178204227360
+Readuser759249448388715426
+Readuser8637665132542722587
+Readuser8753205170136912308
+Readuser1231930228763362049
+Readuser3459217808417385212
+[OVERALL], RunTime(ms), 57
+[OVERALL], Throughput(ops/sec), 526.3157894736842
 [TOTAL_GCS_G1_Young_Generation], Count, 0
 [TOTAL_GC_TIME_G1_Young_Generation], Time(ms), 0
 [TOTAL_GC_TIME_%_G1_Young_Generation], Time(%), 0.0
@@ -42,33 +65,19 @@ Readuser6284781860667377211
 [TOTAL_GCs], Count, 0
 [TOTAL_GC_TIME], Time(ms), 0
 [TOTAL_GC_TIME_%], Time(%), 0.0
-[READ], Operations, 1
-[READ], AverageLatency(us), 197.0
-[READ], MinLatency(us), 197
-[READ], MaxLatency(us), 197
-[READ], 95thPercentileLatency(us), 197
-[READ], 99thPercentileLatency(us), 197
-[READ], Return=OK, 1
+[READ], Operations, 30
+[READ], AverageLatency(us), 230.93333333333334
+[READ], MinLatency(us), 119
+[READ], MaxLatency(us), 1077
+[READ], 95thPercentileLatency(us), 266
+[READ], 99thPercentileLatency(us), 1077
+[READ], Return=OK, 30
 [CLEANUP], Operations, 1
-[CLEANUP], AverageLatency(us), 22.0
-[CLEANUP], MinLatency(us), 22
-[CLEANUP], MaxLatency(us), 22
-[CLEANUP], 95thPercentileLatency(us), 22
-[CLEANUP], 99thPercentileLatency(us), 22
-[INSERT], Operations, 1
-[INSERT], AverageLatency(us), 681.0
-[INSERT], MinLatency(us), 681
-[INSERT], MaxLatency(us), 681
-[INSERT], 95thPercentileLatency(us), 681
-[INSERT], 99thPercentileLatency(us), 681
-[INSERT], Return=OK, 1
-[UPDATE], Operations, 1
-[UPDATE], AverageLatency(us), 471.0
-[UPDATE], MinLatency(us), 471
-[UPDATE], MaxLatency(us), 471
-[UPDATE], 95thPercentileLatency(us), 471
-[UPDATE], 99thPercentileLatency(us), 471
-[UPDATE], Return=OK, 1
+[CLEANUP], AverageLatency(us), 46.0
+[CLEANUP], MinLatency(us), 46
+[CLEANUP], MaxLatency(us), 46
+[CLEANUP], 95thPercentileLatency(us), 46
+[CLEANUP], 99thPercentileLatency(us), 46
 '
-[CPU_USAGE], 9.25
-[RAM_USAGE], 51.925
+[CPU_USAGE], 9.275
+[RAM_USAGE], 52.225

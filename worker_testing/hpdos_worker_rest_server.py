@@ -4,7 +4,7 @@ import json
 import requests
 import time
 import socket
-from rediscluster import RedisCluster
+
 import redis
 from threading import Event
 import logging
@@ -46,33 +46,6 @@ def event_set():
     output_json = json.dumps(response)
     return output_json
 
-@app.route('/insert/', methods=['GET', 'POST'])
-def insert():
-    # print("This is the response", request.json)
-    print(request.json)
-    startup_nodes = [{"host": "127.0.0.1", "port": "7000"}, {"host": "127.0.0.1", "port": "7001"}, {"host": "127.0.0.1", "port": "7002"}, {"host": "127.0.0.1", "port": "7003"}, {"host": "127.0.0.1", "port": "7004"}, {"host": "127.0.0.1", "port": "7005"}]
-    rc = RedisCluster(startup_nodes=startup_nodes, decode_responses=True)
-    
-    rc.set("key","value1")
-    str_val = "Redis "+request.json["target_host"]+" "+request.json["target_port"]+" inserted with key"
-    response = {"status": str_val}
-    output_json = json.dumps(response)
-    return output_json
-
-@app.route('/get/', methods=['GET', 'POST'])
-def get():
-
-    startup_nodes = [{"host": "127.0.0.1", "port": "7000"}, {"host": "127.0.0.1", "port": "7001"}, {"host": "127.0.0.1", "port": "7002"}, {"host": "127.0.0.1", "port": "7003"}, {"host": "127.0.0.1", "port": "7004"}, {"host": "127.0.0.1", "port": "7005"}]
-    rc = RedisCluster(startup_nodes=startup_nodes, decode_responses=True)
-    does_exist = rc.exists("key")
-    if does_exist:
-        value = rc.get("key")
-    else:
-        value = "None"
-    str_val = "Redis "+request.json["target_host"]+" "+request.json["target_port"]+" got "+value+"for key"
-    response = {"status": str_val}
-    output_json = json.dumps(response)
-    return output_json
 
 
 
@@ -94,12 +67,12 @@ def run_workload():
     command = "./bin/ycsb run hpdos -P workloads/workload_template"
     # print(command)
     # subprocess.Popen("python3 cpu_usage.py", shell=True)
-    redis_url = "http://" +request.json["target_host"]+ ":5000/resource_usage/"
+    redis_url = "http://" +request.json["target_host"]+ ":5002/resource_usage/"
     avg_cpu_usage = requests.get(url = redis_url)
 
     output = subprocess.check_output(command, shell = True)
     # print("asdfasdfsadfasdf")
-    redis_url = "http://" +request.json["target_host"]+ ":5000/collect_data/"
+    redis_url = "http://" +request.json["target_host"]+ ":5002/collect_data/"
     avg_resource_usage = requests.get(url = redis_url)
     avg_resource_usage = avg_resource_usage.json()
     print(avg_resource_usage)
@@ -185,59 +158,6 @@ def down():
     response = json.dumps(response)
     return response
 
-@app.route('/same_worker_node/', methods=['GET', 'POST'])
-def inter_process():
-    request.json["sender_machine_ip"]=str(get_ip())
-    print(request.json)
-
-    if request.json["operation"] == "START_SIGNAL":
-        print("Sending START_SIGNAL to", request.json["send_here"])
-        worker_url = "http://" + request.json["send_here"] + ":5000/other_worker_node/"
-        reply = requests.post(url = worker_url, json = request.json)
-        reply = reply.json()
-        print(reply)
-        output_json = json.dumps(reply)
-        time.sleep(10)
-        return output_json
-    elif request.json["operation"] == "WAIT_SIGNAL":
-        file = open("cluster_info/coordination_"+ request.json["start_signal_sender_ip"] +".txt", "r")
-        count=int(file.read())
-        count-=1
-        file.close()
-
-        file = open("cluster_info/coordination_"+ request.json["start_signal_sender_ip"] +".txt", "w")
-        file.write(str(count))
-        file.close()
-        print("Waiting for Start Signal from", request.json["start_signal_sender_ip"])
-        # file.write(str(count))
-        # file.close()
-        while count!=0:
-            file = open("cluster_info/coordination_"+ request.json["start_signal_sender_ip"] +".txt", "r")
-            count=int(file.read())
-            file.close()
-            time.sleep(2)
-        
-        response = {}
-        response["response_data"] = "Continue the trace"
-        output_json = json.dumps(response)
-        return output_json
-
-@app.route('/other_worker_node/', methods=['GET', 'POST'])
-def inter_machine():
-    print(request.json)
-    file = open("cluster_info/coordination_"+ request.json["sender_machine_ip"] +".txt", "r")
-    count=int(file.read())
-    count+=1
-    file.close()
-    file = open("cluster_info/coordination_"+ request.json["sender_machine_ip"] +".txt", "w")
-    file.write(str(count))
-    file.close()
-    print(count)
-    
-    response = {}
-    response["response_data"] = "Signal Sent"
-    output_json = json.dumps(response)
-    return output_json
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5001)

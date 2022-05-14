@@ -38,43 +38,6 @@
 			"destination_workload_path":"KV-replay/workloads/"
 		},
 		{	
-			"name":"host_2",
-
-			"target_system":"redis",
-			"worker_rest_agent":{
-				"ip":"192.168.122.111",
-				"port":"5000"
-			},
-			"target_rest_agent":{
-				"ip":"192.168.122.57",
-				"port":"5000"
-			},
-			"command_parameters":{
-				"worker_node_username":"seen2",
-				"worker_node_ip" : "192.168.122.111",
-				"target_system":"redis",
-				"target_system_username":"redis2",
-				"target_host" : "192.168.122.57",
-				"target_port": "7002",
-				"phase":"load"
-			},
-			"status":"inactive",
-			"send_trace_file":"true",
-			"split_parameters":{
-				"ratio":30
-			},
-			"workload_parameter":{
-				"recordcount":"100",
-				"core_path":"com.yahoo.ycsb.workloads.CoreWorkload",
-				"operationcount":"100",
-				"readproportion":"0.5",
-				"updateproportion":"0.5",
-				"insertproportion":"0.3",
-				"requestdistribution":"zipfian"
-			},
-			"destination_workload_path":"KV-replay/workloads/"
-		},
-		{	
 			"name":"host_3",
 
 			"target_system":"redis",
@@ -178,10 +141,10 @@
 			"workload_parameter":{
 				"recordcount":"100",
 				"core_path":"site.ycsb.workloads.CoreWorkload",
-				"operationcount":"100",
+				"operationcount":"30",
 				"readproportion":"1",
-				"updateproportion":"1",
-				"insertproportion":"1",
+				"updateproportion":"0",
+				"insertproportion":"0",
 				"requestdistribution":"zipfian"
 			},
 			"destination_workload_path":"nadesh/worker_node/cppclient/YCSB/workloads/"

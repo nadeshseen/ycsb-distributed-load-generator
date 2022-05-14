@@ -200,7 +200,7 @@ def clear_redis():
 				reply = requests.get(url = worker_url)
 				reply = reply.json()
 				print("Status : "+reply["status"])		
-				
+	val="N"
 	if mode_var == "interactive":
 		print("Do you want to reset data from Target System?(Y/N)")
 		val = input()
