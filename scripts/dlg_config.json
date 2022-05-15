@@ -16,12 +16,48 @@
 				"worker_node_username":"seen1",
 				"worker_node_ip" : "192.168.122.114",
 				"target_system":"redis",
-				"target_system_username":"redis1",
 				"target_host" : "192.168.122.77",
 				"target_port": "7000",
 				"phase":"load"
 			},
-			"status":"inactive",
+			"status":"active",
+			"send_trace_file":"true",
+			"split_parameters":{
+				"ratio":30
+			},
+			"workload_parameter":{
+				"recordcount":"100",
+				"core_path":"com.yahoo.ycsb.workloads.CoreWorkload",
+				"operationcount":"100",
+				"readproportion":"0.5",
+				"updateproportion":"0.5",
+				"insertproportion":"0.3",
+				"requestdistribution":"zipfian"
+			},
+			"destination_workload_path":"KV-replay/workloads/"
+		},
+		{	
+			"name":"host_2",
+
+			"target_system":"redis",
+			
+			"worker_rest_agent":{
+				"ip":"192.168.122.111",
+				"port":"5000"
+			},
+			"target_rest_agent":{
+				"ip":"192.168.122.57",
+				"port":"5000"
+			},
+			"command_parameters":{
+				"worker_node_username":"seen2",
+				"worker_node_ip" : "192.168.122.111",
+				"target_system":"redis",
+				"target_host" : "192.168.122.57",
+				"target_port": "7002",
+				"phase":"load"
+			},
+			"status":"active",
 			"send_trace_file":"true",
 			"split_parameters":{
 				"ratio":30
@@ -54,12 +90,11 @@
 				"worker_node_username":"seen3",
 				"worker_node_ip" : "192.168.122.31",
 				"target_system":"redis",
-				"target_system_username":"redis3",
 				"target_host" : "192.168.122.16",
 				"target_port": "7004",
 				"phase":"load"
 			},
-			"status":"inactive",
+			"status":"active",
 			"send_trace_file":"true",
 			"split_parameters":{
 				"ratio":40
@@ -92,7 +127,6 @@
 				"worker_node_username":"seen3",
 				"worker_node_ip" : "192.168.122.31",
 				"target_system":"redis",
-				"target_system_username":"redis3",
 				"target_host" : "192.168.122.16",
 				"target_port": "7004",
 				"phase":"load"
@@ -128,7 +162,6 @@
 				"worker_node_username":"ub-05",
 				"worker_node_ip" : "10.129.2.181",
 				"target_system":"hpdos",
-				"target_system_username":"ub-05",
 				"target_host" : "10.129.2.181",
 				"target_port": "7004",
 				"phase":"run"
@@ -150,15 +183,11 @@
 			"destination_workload_path":"nadesh/worker_node/cppclient/YCSB/workloads/"
 		}
 	],
-	"split_parameters":{
-		"trace_file_name": "../traces/testing.dat"
-	},
-
-
-
-	"output_file":"../results/final_report.txt",
-
-	"new_trace_file_path":"../splitted_files/",
-	"new_trace_parameter_file_path":"../trace_workloads/",
-	"new_workload_file_path":"../workloads/"
+	"trace_file_name": "/home/ub-04/nadesh/ycsb-distributed-load-generator/traces/testing2.dat",
+	"output_file":"/home/ub-04/nadesh/ycsb-distributed-load-generator/results/final_report.txt",
+	"trace_splits_path":"/home/ub-04/nadesh/ycsb-distributed-load-generator/scripts/splitted_files",
+	"trace_para_splits_path":"/home/ub-04/nadesh/ycsb-distributed-load-generator/scripts/trace_workloads",
+	"workload_para_splits_path":"/home/ub-04/nadesh/ycsb-distributed-load-generator/scripts/workloads",
+	"trace_template":"/home/ub-04/nadesh/ycsb-distributed-load-generator/scripts/trace_workloads/replay_template",
+	"workload_template":"/home/ub-04/nadesh/ycsb-distributed-load-generator/scripts/workloads/parameter_template"
 }

@@ -5,21 +5,21 @@ START_SIGNAL
 Output from Server .... 
 
 {"status":"192.168.122.31_user6993674732269166438_192.168.122.111 0"}
-[OVERALL], RunTime(ms), 436.0
+[OVERALL], RunTime(ms), 15397.0
 [OVERALL], Throughput(ops/sec), 0.0
 [CLEANUP], Operations, 1
-[CLEANUP], AverageLatency(us), 6716.0
-[CLEANUP], MinLatency(us), 6716
-[CLEANUP], MaxLatency(us), 6716
-[CLEANUP], 95thPercentileLatency(ms), 6
-[CLEANUP], 99thPercentileLatency(ms), 6
+[CLEANUP], AverageLatency(us), 7165.0
+[CLEANUP], MinLatency(us), 7165
+[CLEANUP], MaxLatency(us), 7165
+[CLEANUP], 95thPercentileLatency(ms), 7
+[CLEANUP], 99thPercentileLatency(ms), 7
 [INSERT], Operations, 6
-[INSERT], AverageLatency(us), 4422.333333333333
-[INSERT], MinLatency(us), 2330
-[INSERT], MaxLatency(us), 11541
-[INSERT], 95thPercentileLatency(ms), 11
-[INSERT], 99thPercentileLatency(ms), 11
+[INSERT], AverageLatency(us), 5300.166666666667
+[INSERT], MinLatency(us), 2882
+[INSERT], MaxLatency(us), 12996
+[INSERT], 95thPercentileLatency(ms), 12
+[INSERT], 99thPercentileLatency(ms), 12
 [INSERT], Return=0, 6
 '
-[CPU_USAGE], 0.341667
-[RAM_USAGE], 7
+[CPU_USAGE], 0.318519
+[RAM_USAGE], 7.1

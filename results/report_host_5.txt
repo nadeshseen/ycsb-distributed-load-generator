@@ -11,12 +11,12 @@ dbHpdosClient
 requestdistributionzipfian
 init hpdos
 CMProcessor : Step 1 creating event channel
-clientsCMProcessor : starting cm processing thread
-1
+CMProcessor : starting cm processing thread
+clients1
 creating client for 192.168.200.201:19211 
-ep0x7f253400a110
+ep0x7fd0f000a120
 vec size1
-ep0x7f253400a110
+ep0x7fd0f000a120
 timeout 0
 1RdmaClientEndpointGroup :  eventRDMA_CM_EVENT_ADDR_RESOLVED
 RdmaClientEndpointGroup : Creating CQ processor
@@ -24,38 +24,38 @@ CqProcessr : starting process CQ events
 RdmaClientEndpointGroup :  eventRDMA_CM_EVENT_ROUTE_RESOLVED
 timeout 10
 1RdmaClientEndpointGroup :  eventRDMA_CM_EVENT_ESTABLISHED
-Readuser8049444314573886243
-Readuser8753205170136912308
-Readuser1588605996173063704
-Readuser1468038131265307737
-Readuser8637665132542722587
-Readuser55488592825689361
-Readuser4409142221109489457
-Readuser2061286776547710327
-Readuser5223880262323894244
+Readuser4047438626386221556
+Readuser643709410794525705
+Readuser1473065958578873983
+Readuser2876024817762115114
 Readuser3820921403140653113
-Readuser3353268450079572736
-Readuser1231930228763362049
-Readuser2176826814141900048
-Readuser8753205170136912308
-Readuser7340655631697293932
-Readuser8396529402727210653
-Readuser8637665132542722587
-Readuser532732225143146983
-Readuser3820921403140653113
+Readuser7923848622352564030
 Readuser4520119406760868179
+Readuser8164984352168075964
 Readuser3700353538232897146
-Readuser3232700585171816769
-Readuser171028630419879082
-Readuser6164213995759621244
-Readuser1000385178204227360
+Readuser2876024817762115114
+Readuser2056258949234144081
+Readuser7340655631697293932
+Readuser4293602183515299736
+Readuser7340655631697293932
+Readuser2996592682669871081
+Readuser2765047632110736392
+Readuser417192187548957262
+Readuser176056457733445328
+Readuser3931898588792031835
+Readuser1468038131265307737
+Readuser4876795174170569834
 Readuser759249448388715426
+Readuser3237728412485383015
+Readuser176056457733445328
+Readuser3584813500638707425
+Readuser3820921403140653113
+Readuser643709410794525705
+Readuser1815123219418632147
+Readuser417192187548957262
 Readuser8637665132542722587
-Readuser8753205170136912308
-Readuser1231930228763362049
-Readuser3459217808417385212
-[OVERALL], RunTime(ms), 57
-[OVERALL], Throughput(ops/sec), 526.3157894736842
+[OVERALL], RunTime(ms), 52
+[OVERALL], Throughput(ops/sec), 576.9230769230769
 [TOTAL_GCS_G1_Young_Generation], Count, 0
 [TOTAL_GC_TIME_G1_Young_Generation], Time(ms), 0
 [TOTAL_GC_TIME_%_G1_Young_Generation], Time(%), 0.0
@@ -66,18 +66,18 @@ Readuser3459217808417385212
 [TOTAL_GC_TIME], Time(ms), 0
 [TOTAL_GC_TIME_%], Time(%), 0.0
 [READ], Operations, 30
-[READ], AverageLatency(us), 230.93333333333334
-[READ], MinLatency(us), 119
-[READ], MaxLatency(us), 1077
-[READ], 95thPercentileLatency(us), 266
-[READ], 99thPercentileLatency(us), 1077
+[READ], AverageLatency(us), 174.53333333333333
+[READ], MinLatency(us), 114
+[READ], MaxLatency(us), 1220
+[READ], 95thPercentileLatency(us), 315
+[READ], 99thPercentileLatency(us), 1220
 [READ], Return=OK, 30
 [CLEANUP], Operations, 1
-[CLEANUP], AverageLatency(us), 46.0
-[CLEANUP], MinLatency(us), 46
-[CLEANUP], MaxLatency(us), 46
-[CLEANUP], 95thPercentileLatency(us), 46
-[CLEANUP], 99thPercentileLatency(us), 46
+[CLEANUP], AverageLatency(us), 25.0
+[CLEANUP], MinLatency(us), 25
+[CLEANUP], MaxLatency(us), 25
+[CLEANUP], 95thPercentileLatency(us), 25
+[CLEANUP], 99thPercentileLatency(us), 25
 '
-[CPU_USAGE], 9.275
-[RAM_USAGE], 52.225
+[CPU_USAGE], 9.5
+[RAM_USAGE], 51.45

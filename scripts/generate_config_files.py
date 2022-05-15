@@ -13,7 +13,7 @@ def file_len(fname):
 def split_files(config_filename):
     json_data_file =  open(config_filename)
     data = json.load(json_data_file)
-    file_name = data["split_parameters"]["trace_file_name"]
+    file_name = data["trace_file_name"]
     n_splits = 0
     active_file_name=""
     for machines in data["machines"]:
@@ -24,8 +24,8 @@ def split_files(config_filename):
                 active_file_name=machines["name"]
 
 
+    parameter_count=0
     if n_splits==0:
-        parameter_count=0
         for machines in data["machines"]:
             if machines["status"]=="active":
                 if machines["send_trace_file"]=="false":
@@ -33,10 +33,9 @@ def split_files(config_filename):
                     
                     data = open("./workloads/parameter_template")
                     data = data.read()
-                    print()
                     # print(data)
-                    data = data.replace("<recordcount>", machines["workload_parameter"]["recordcount"])
                     data = data.replace("<core_path>", machines["workload_parameter"]["core_path"])
+                    data = data.replace("<recordcount>", machines["workload_parameter"]["recordcount"])
                     data = data.replace("<operationcount>", machines["workload_parameter"]["operationcount"])
                     data = data.replace("<readproportion>", machines["workload_parameter"]["readproportion"])
                     data = data.replace("<updateproportion>", machines["workload_parameter"]["updateproportion"])
@@ -51,15 +50,12 @@ def split_files(config_filename):
 
                     new_file = open(path+new_file_name, "w")
                     new_file.write(data)
-        print(parameter_count, "Parameter files")
     elif n_splits==1:
-        print("No splits")
         path = "./splitted_files/"
         new_file_name = "kv_trace_"+active_file_name+".dat"
         os.system("cp "+ file_name +" "+path+ new_file_name)
         print(machines["name"],new_file_name, file_len(path+new_file_name))
     else:
-        print("Number of splits :",str(n_splits))
         split_ratio = []
         for machines in data["machines"]:
             if machines["status"]=="active":
@@ -68,7 +64,7 @@ def split_files(config_filename):
 
         
         n_lines = file_len(file_name)
-
+        print(n_lines)
         ratio_sum = 0
         for i in range(n_splits):
             ratio_sum += int(split_ratio[i])
@@ -91,7 +87,7 @@ def split_files(config_filename):
 
         # print()
         # os.system("bash testing.sh "+str_split_ratio)
-        comm = "cd splitted_files && csplit -s ../"+file_name+" --prefix='kv_trace_' --suffix-format='%01d.dat' "+str_split_line_no
+        comm = "cd splitted_files && csplit -s "+file_name+" --prefix='kv_trace_' --suffix-format='%01d.dat' "+str_split_line_no
         # print(comm)
 
         os.system(comm)
@@ -127,7 +123,8 @@ def split_files(config_filename):
 
                     new_file = open(path+new_file_name, "w")
                     new_file.write(data)
-        print(parameter_count, "Parameter files")
+    print("Worker nodes with trace input =",str(n_splits))
+    print("Worker nodes with non-trace input =",parameter_count)
     
 
 if __name__=="__main__":

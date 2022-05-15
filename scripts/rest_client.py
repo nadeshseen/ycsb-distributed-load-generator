@@ -18,12 +18,11 @@ final_report_path = data["output_file"]
 mode_var = ""
 
 def main_program():
-	print("Choose mode :")
+	print("Choose mode(1/2) :")
 	global mode_var
 	mode_var = "interactive"
 	print("1. Interactive Mode")
 	print("2. Auto Mode")
-	print("3. Debug Mode")
 	val = int(input())
 	
 	if val==2:
@@ -41,7 +40,7 @@ def call_split():
 	val = "Y"
 
 	if mode_var == "interactive":
-		print("Do you want to generate config files?(Y/N)")
+		print("Do you want to generate input files for each worker node?(Y/N)")
 		val = input()
 	if val=="Y" or val=="y":
 		split_files(config_filename)
@@ -112,6 +111,7 @@ def send_request(name, machines):
 	report.writelines("[CPU_USAGE], "+reply["avg_cpu_usage"]+"\n")
 	report.writelines("[RAM_USAGE], "+reply["avg_ram_usage"])
 	report.close()
+	print(machines["name"]+" completed run phase")
 
 def call_send_run_request():
 	val = "Y"
@@ -120,6 +120,7 @@ def call_send_run_request():
 		print("Do you want to run the benchmark?(Y/N)")
 		val = input()
 	if val=="Y" or val=="y":
+		print("Run Phase Started")
 		request_threads = []
 		for machines in data["machines"]:
 			if machines["status"]=="active":
@@ -188,15 +189,12 @@ def clear_redis():
 		print("Do you want to reset worker nodes redis instances?(Y/N)")
 		val = input()
 	if val=="Y" or val=="y":
-		print("Cleaing data from worker nodes redis instances")
+		print("Clearing data from worker nodes redis instances")
 		json_data_file =  open(kv_redis_config_filename)
 		redis_data = json.load(json_data_file)
-		# print(redis_data)
 		for worker_node in data["machines"]:
 			if worker_node["status"]=="active" and worker_node["target_system"]!="hpdos":
-				# print(redis_machines)
 				worker_url = "http://" + worker_node["worker_rest_agent"]["ip"] + ":" + worker_node["worker_rest_agent"]["port"] + "/clear_redis_nodes/"
-				print(worker_url)
 				reply = requests.get(url = worker_url)
 				reply = reply.json()
 				print("Status : "+reply["status"])		
@@ -208,11 +206,9 @@ def clear_redis():
 		print("Cleaning data from Target System")
 		json_data_file =  open(redis_config_filename)
 		redis_data = json.load(json_data_file)
-		# print(redis_data)
 		for redis_machines in redis_data["redis_machines"]:
 			
 			if redis_machines["status"] == "master":
-				# print(redis_machines)
 				worker_url = "http://" + redis_machines["target_host"] + ":5000/clear_redis_nodes/"
 				reply = requests.post(url = worker_url, json = redis_machines)
 				reply = reply.json()
@@ -222,13 +218,8 @@ def testing():
 	json_data_file =  open(kv_redis_config_filename)
 	redis_data = json.load(json_data_file)
 	redis_machines = redis_data["redis_machines"]
-	# worker_url = "http://192.168.122.114:5000/insert/"
-	# reply = requests.post(url = worker_url, json = redis_machines[0])
-	# reply = reply.json()
-	# print("Status : "+reply["status"])	
 	worker_url = "http://192.168.122.111:5000/down/"
 	json_post = {"key":"Aasdfasdf", "start_signal_sender_ip":"192.168.122.114"}
-	# json_post = json.dumps(json_post)
 	reply = requests.post(url = worker_url, json = json_post)
 	reply = reply.json()
 	print("Status : "+reply["status"])
