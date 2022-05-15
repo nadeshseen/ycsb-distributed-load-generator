@@ -20,11 +20,10 @@
 				"target_port": "7000",
 				"phase":"load"
 			},
-			"status":"active",
+			"status":"inactive",
 			"send_trace_file":"true",
-			"split_parameters":{
-				"ratio":30
-			},
+
+			"trace_percentage":"30",
 			"workload_parameter":{
 				"recordcount":"100",
 				"core_path":"com.yahoo.ycsb.workloads.CoreWorkload",
@@ -57,11 +56,9 @@
 				"target_port": "7002",
 				"phase":"load"
 			},
-			"status":"active",
+			"status":"inactive",
 			"send_trace_file":"true",
-			"split_parameters":{
-				"ratio":30
-			},
+			"trace_percentage":"30",
 			"workload_parameter":{
 				"recordcount":"100",
 				"core_path":"com.yahoo.ycsb.workloads.CoreWorkload",
@@ -92,13 +89,11 @@
 				"target_system":"redis",
 				"target_host" : "192.168.122.16",
 				"target_port": "7004",
-				"phase":"load"
+				"phase":"run"
 			},
-			"status":"active",
+			"status":"inactive",
 			"send_trace_file":"true",
-			"split_parameters":{
-				"ratio":40
-			},
+			"trace_percentage":"40",
 			"workload_parameter":{
 				"recordcount":"100",
 				"core_path":"com.yahoo.ycsb.workloads.CoreWorkload",
@@ -133,9 +128,7 @@
 			},
 			"status":"inactive",
 			"send_trace_file":"false",
-			"split_parameters":{
-				"ratio":5
-			},
+			"trace_percentage":"30",
 			"workload_parameter":{
 				"recordcount":"100",
 				"core_path":"com.yahoo.ycsb.workloads.CoreWorkload",
@@ -164,17 +157,15 @@
 				"target_system":"hpdos",
 				"target_host" : "10.129.2.181",
 				"target_port": "7004",
-				"phase":"run"
+				"phase":"load"
 			},
 			"status":"active",
 			"send_trace_file":"false",
-			"split_parameters":{
-				"ratio":5
-			},
+			"trace_percentage":"30",
 			"workload_parameter":{
-				"recordcount":"100",
+				"recordcount":"10",
 				"core_path":"site.ycsb.workloads.CoreWorkload",
-				"operationcount":"30",
+				"operationcount":"10",
 				"readproportion":"1",
 				"updateproportion":"0",
 				"insertproportion":"0",
@@ -183,11 +174,11 @@
 			"destination_workload_path":"nadesh/worker_node/cppclient/YCSB/workloads/"
 		}
 	],
-	"trace_file_name": "/home/ub-04/nadesh/ycsb-distributed-load-generator/traces/testing2.dat",
+	"trace_file_name": "/home/ub-04/nadesh/ycsb-distributed-load-generator/traces/testing3.dat",
 	"output_file":"/home/ub-04/nadesh/ycsb-distributed-load-generator/results/final_report.txt",
-	"trace_splits_path":"/home/ub-04/nadesh/ycsb-distributed-load-generator/scripts/splitted_files",
-	"trace_para_splits_path":"/home/ub-04/nadesh/ycsb-distributed-load-generator/scripts/trace_workloads",
-	"workload_para_splits_path":"/home/ub-04/nadesh/ycsb-distributed-load-generator/scripts/workloads",
+	"trace_splits_path":"/home/ub-04/nadesh/ycsb-distributed-load-generator/scripts/splitted_files/",
+	"trace_para_splits_path":"/home/ub-04/nadesh/ycsb-distributed-load-generator/scripts/trace_workloads/",
+	"workload_para_splits_path":"/home/ub-04/nadesh/ycsb-distributed-load-generator/scripts/workloads/",
 	"trace_template":"/home/ub-04/nadesh/ycsb-distributed-load-generator/scripts/trace_workloads/replay_template",
 	"workload_template":"/home/ub-04/nadesh/ycsb-distributed-load-generator/scripts/workloads/parameter_template"
 }

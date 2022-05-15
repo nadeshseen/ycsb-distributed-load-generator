@@ -1,32 +1,27 @@
 b'YCSB Client 0.1
 Command line: -db com.yahoo.ycsb.db.RedisClient -P workloads/workload_template -p redis.host=192.168.122.77 -p redis.port=7000 -p redis.cluster=true -t
-START_SIGNAL
-192.168.122.111 START_SIGNAL
-Output from Server .... 
-
-{"status":"192.168.122.114_user6993674732269166438_192.168.122.111 0"}
-[OVERALL], RunTime(ms), 10358.0
+[OVERALL], RunTime(ms), 277.0
 [OVERALL], Throughput(ops/sec), 0.0
 [CLEANUP], Operations, 1
-[CLEANUP], AverageLatency(us), 5352.0
-[CLEANUP], MinLatency(us), 5352
-[CLEANUP], MaxLatency(us), 5352
-[CLEANUP], 95thPercentileLatency(ms), 5
-[CLEANUP], 99thPercentileLatency(ms), 5
+[CLEANUP], AverageLatency(us), 3362.0
+[CLEANUP], MinLatency(us), 3362
+[CLEANUP], MaxLatency(us), 3362
+[CLEANUP], 95thPercentileLatency(ms), 3
+[CLEANUP], 99thPercentileLatency(ms), 3
 [UPDATE], Operations, 1
-[UPDATE], AverageLatency(us), 6567.0
-[UPDATE], MinLatency(us), 6567
-[UPDATE], MaxLatency(us), 6567
+[UPDATE], AverageLatency(us), 6545.0
+[UPDATE], MinLatency(us), 6545
+[UPDATE], MaxLatency(us), 6545
 [UPDATE], 95thPercentileLatency(ms), 6
 [UPDATE], 99thPercentileLatency(ms), 6
 [UPDATE], Return=0, 1
 [INSERT], Operations, 2
-[INSERT], AverageLatency(us), 6636.5
-[INSERT], MinLatency(us), 3771
-[INSERT], MaxLatency(us), 9502
-[INSERT], 95thPercentileLatency(ms), 9
-[INSERT], 99thPercentileLatency(ms), 9
+[INSERT], AverageLatency(us), 3467.0
+[INSERT], MinLatency(us), 2127
+[INSERT], MaxLatency(us), 4807
+[INSERT], 95thPercentileLatency(ms), 4
+[INSERT], 99thPercentileLatency(ms), 4
 [INSERT], Return=0, 2
 '
-[CPU_USAGE], 0.319048
+[CPU_USAGE], 0.309091
 [RAM_USAGE], 7.2

@@ -149,6 +149,7 @@ def load_request(name, machines):
 	for line in file_lines:
 		report.writelines(line+"\n")
 	report.close()
+	print(machines["name"]+" completed load phase")
 
 def call_send_load_request():
 	val = "Y"
@@ -157,11 +158,12 @@ def call_send_load_request():
 		print("Do you want to load the data?(Y/N)")
 		val = input()
 	if val=="Y" or val=="y":
+		print("Load Phase Started")
 		request_threads = []
 		for machines in data["machines"]:
 			if machines["status"]=="active":
 				if machines["command_parameters"]["phase"]=="load":
-					request_threads.append(threading.Thread(target = load_request, args = [machines["name"], machines["command_parameters"]]))
+					request_threads.append(threading.Thread(target = load_request, args = [machines["name"], machines]))
 					machines["command_parameters"]["phase"]="run"
 
 		for host_thread in request_threads:
@@ -242,7 +244,7 @@ if __name__ == "__main__":
 		
 		call_split()
 		call_send_files()
-		# call_send_load_request()
+		call_send_load_request()
 		call_send_run_request()
 		call_analysis()
 

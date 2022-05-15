@@ -11,12 +11,12 @@ dbHpdosClient
 requestdistributionzipfian
 init hpdos
 CMProcessor : Step 1 creating event channel
-CMProcessor : starting cm processing thread
-clients1
+clientsCMProcessor : starting cm processing thread
+1
 creating client for 192.168.200.201:19211 
-ep0x7fd37c00a110
+ep0x7ff5d400a120
 vec size1
-ep0x7fd37c00a110
+ep0x7ff5d400a120
 timeout 0
 1RdmaClientEndpointGroup :  eventRDMA_CM_EVENT_ADDR_RESOLVED
 RdmaClientEndpointGroup : Creating CQ processor
@@ -24,18 +24,18 @@ CqProcessr : starting process CQ events
 RdmaClientEndpointGroup :  eventRDMA_CM_EVENT_ROUTE_RESOLVED
 timeout 10
 1RdmaClientEndpointGroup :  eventRDMA_CM_EVENT_ESTABLISHED
-Readuser5465015992139406178
+Readuser1000385178204227360
+Readuser7697331399106995587
+Readuser8517097267634966620
+Readuser6873002678636213555
 Readuser4052466453699787802
-Readuser5465015992139406178
-Readuser5465015992139406178
 Readuser6284781860667377211
 Readuser7697331399106995587
-Readuser3232700585171816769
-Readuser6873002678636213555
+Readuser6284781860667377211
 Readuser9105318085603802964
-Readuser4052466453699787802
-[OVERALL], RunTime(ms), 49
-[OVERALL], Throughput(ops/sec), 204.08163265306123
+Readuser5465015992139406178
+[OVERALL], RunTime(ms), 50
+[OVERALL], Throughput(ops/sec), 200.0
 [TOTAL_GCS_G1_Young_Generation], Count, 0
 [TOTAL_GC_TIME_G1_Young_Generation], Time(ms), 0
 [TOTAL_GC_TIME_%_G1_Young_Generation], Time(%), 0.0
@@ -46,18 +46,16 @@ Readuser4052466453699787802
 [TOTAL_GC_TIME], Time(ms), 0
 [TOTAL_GC_TIME_%], Time(%), 0.0
 [READ], Operations, 10
-[READ], AverageLatency(us), 267.5
-[READ], MinLatency(us), 121
-[READ], MaxLatency(us), 1080
-[READ], 95thPercentileLatency(us), 1080
-[READ], 99thPercentileLatency(us), 1080
+[READ], AverageLatency(us), 300.4
+[READ], MinLatency(us), 192
+[READ], MaxLatency(us), 1052
+[READ], 95thPercentileLatency(us), 1052
+[READ], 99thPercentileLatency(us), 1052
 [READ], Return=OK, 10
 [CLEANUP], Operations, 1
-[CLEANUP], AverageLatency(us), 35.0
-[CLEANUP], MinLatency(us), 35
-[CLEANUP], MaxLatency(us), 35
-[CLEANUP], 95thPercentileLatency(us), 35
-[CLEANUP], 99thPercentileLatency(us), 35
+[CLEANUP], AverageLatency(us), 23.0
+[CLEANUP], MinLatency(us), 23
+[CLEANUP], MaxLatency(us), 23
+[CLEANUP], 95thPercentileLatency(us), 23
+[CLEANUP], 99thPercentileLatency(us), 23
 '
-[CPU_USAGE], 8.275
-[RAM_USAGE], 51.75

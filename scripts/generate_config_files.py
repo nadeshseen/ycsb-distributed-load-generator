@@ -14,6 +14,11 @@ def split_files(config_filename):
     json_data_file =  open(config_filename)
     data = json.load(json_data_file)
     file_name = data["trace_file_name"]
+    
+    trace_splits_path = data["trace_splits_path"]
+
+    workload_template = data["workload_template"]
+
     n_splits = 0
     active_file_name=""
     for machines in data["machines"]:
@@ -31,7 +36,7 @@ def split_files(config_filename):
                 if machines["send_trace_file"]=="false":
                     parameter_count+=1
                     
-                    data = open("./workloads/parameter_template")
+                    data = open(workload_template)
                     data = data.read()
                     # print(data)
                     data = data.replace("<core_path>", machines["workload_parameter"]["core_path"])
@@ -51,7 +56,7 @@ def split_files(config_filename):
                     new_file = open(path+new_file_name, "w")
                     new_file.write(data)
     elif n_splits==1:
-        path = "./splitted_files/"
+        path = trace_splits_path
         new_file_name = "kv_trace_"+active_file_name+".dat"
         os.system("cp "+ file_name +" "+path+ new_file_name)
         print(machines["name"],new_file_name, file_len(path+new_file_name))
@@ -60,7 +65,7 @@ def split_files(config_filename):
         for machines in data["machines"]:
             if machines["status"]=="active":
                 if machines["send_trace_file"]=="true":
-                    split_ratio.append(machines["split_parameters"]["ratio"])
+                    split_ratio.append(machines["trace_percentage"])
 
         
         n_lines = file_len(file_name)
@@ -96,7 +101,7 @@ def split_files(config_filename):
         for machines in data["machines"]:
             if machines["status"]=="active":
                 if machines["send_trace_file"]=="true":
-                    path = "./splitted_files/"
+                    path = trace_splits_path
                     old_file_name = "kv_trace_"+str(i)+".dat"
                     new_file_name = "kv_trace_"+machines["name"]+".dat"
                     os.rename(path+old_file_name, path+new_file_name)
@@ -104,7 +109,7 @@ def split_files(config_filename):
                     i+=1
                 else:
                     parameter_count+=1
-                    data = open("./workloads/parameter_template")
+                    data = open(workload_template)
                     data = data.read()
                     # print(data)
                     data = data.replace("<recordcount>", machines["workload_parameter"]["recordcount"])
