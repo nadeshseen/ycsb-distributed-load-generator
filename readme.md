@@ -25,6 +25,8 @@ allocated. Three VMs (VM1, VM2, and VM3) are used for the KV-replay
 instances. We use the Redis cluster as our Target System and these use three
 VMs (VM4, VM5, and VM6) as described in section 4.7.
 
+<img src="https://github.com/nadeshseen/ycsb-dlg/blob/main/images/ControllerNode.drawio.png" width="450" height="400" >
+
 How to run?
 1. All the nodes should have python rest_server.py files called as Rest Agent in the text.
 2. Run all Rest Agents.
